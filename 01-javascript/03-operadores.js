@@ -121,3 +121,15 @@ const respuestaEvery = arreglo.every(
     }
 )
 console.log("Repuesta Every: ", respuestaEvery);
+
+//Reduce --> Ejecutar varias operaciones con un arreglo (izquierda -> derecha)
+
+const respuestaReduce = arreglo.reduce(
+    function (valorAcumulado, valorActual, indice ,arreglo){
+        return (valorAcumulado - valorActual.nota);
+    },
+    100 // Acumulador
+);
+console.log("Respuesta Reduce:", respuestaReduce);
+//Reduce Rigth --> Ejecutar varias operaciones con un arreglo (derecha -> izquierda)
+
