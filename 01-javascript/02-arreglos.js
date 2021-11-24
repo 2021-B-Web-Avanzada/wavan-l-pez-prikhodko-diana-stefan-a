@@ -30,6 +30,7 @@ for (let indice in arreglo){
 let objetoPrueba = {a: 1, b: 2, c:3};
 for(let llave in objetoPrueba){
     console.log("Objeto llave:", llave);
+<<<<<<< HEAD
 }
 
 /* ---------- MÉTODOS  ----------  */
@@ -53,3 +54,6 @@ console.log("SPLICE ADD POSITION 0:",arreglo);
 const indice = arreglo.indexOf(9);
 arreglo.splice(indice,2);
 console.log("SPLICE DELETE 9 y 10:",arreglo);
+=======
+}
+>>>>>>> desarrollo
