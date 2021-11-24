@@ -30,4 +30,30 @@ for (let indice in arreglo){
 let objetoPrueba = {a: 1, b: 2, c:3};
 for(let llave in objetoPrueba){
     console.log("Objeto llave:", llave);
+<<<<<<< HEAD
 }
+
+/* ---------- MÉTODOS  ----------  */
+
+console.log("Arreglo inicial:",arreglo);
+
+// PUSH --> Agregar uno o varios elementos al final
+arreglo.push(11);
+console.log("PUSH 11:",arreglo);
+//POP --> Eliminar el último elemento
+arreglo.pop();
+console.log("POP:",arreglo);
+//UNSHIFT --> Añadir al principio
+arreglo.unshift(5);
+console.log("UNSHIFT 5: ",arreglo);
+
+//SPLICE --> Eliminar/Añadir la posición y cantidad indicada
+arreglo.splice(0,0, 4);
+console.log("SPLICE ADD POSITION 0:",arreglo);
+//Encuetra el primer elemeto y devuelve el índice
+const indice = arreglo.indexOf(9);
+arreglo.splice(indice,2);
+console.log("SPLICE DELETE 9 y 10:",arreglo);
+=======
+}
+>>>>>>> desarrollo
