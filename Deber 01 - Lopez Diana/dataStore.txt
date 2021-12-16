@@ -1,0 +1,4 @@
+001|Mistika|Av Imaginaria|253659|true
+002|Jolie|Enrique Segoviano y Z123|63589654|false
+003|Pica|Solanda|8569584|true
+004|Mil conjuntos para ti|La Ecuatoriana y N234|3652478|true
