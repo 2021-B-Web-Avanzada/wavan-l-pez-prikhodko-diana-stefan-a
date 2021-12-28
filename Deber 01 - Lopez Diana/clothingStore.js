@@ -189,8 +189,8 @@ class ClothingStore {
 
         let data = "";
         if(respuestaFiltro.length !== arreglo.length){
-            for(const store of respuestaFiltro){
-                data = data + this.formatString(store) + "\n"
+            for(const store1 of respuestaFiltro){
+                data = data + this.formatString(store1) + "\n"
             }
             const operation = new Promise(
                 (resolve, reject) => {
