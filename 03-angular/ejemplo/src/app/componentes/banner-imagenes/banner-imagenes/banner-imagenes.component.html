@@ -1,0 +1,29 @@
+<h1 [ngStyle]="{
+'background-color': '#000',
+'color' : color,
+'border' : 'solid 5px ' + color
+}">Hola desde el Banner Componente</h1>
+
+<!-- INTERPOLACIÓN {{}} - Colocar variables en la interfaz -->
+
+<h2>{{nombre}} - {{apellido}}</h2>
+
+<p>Mascota: {{mascotas.kiska.edad}}</p>
+
+<!-- PROPERTY BINDING [] -->
+
+<img [src]="urlImagen" alt="">
+<a [href]="url" target="_blank"> Mas información</a>
+
+<!-- Event Binding [] -->
+
+<br>
+<button (click)="ejecutarEventoClick()"
+        (blur)="ejecutarEventoBlur()"
+>Event Binding </button>
+
+<!-- PIPES - Recibe algo y lo transforma-->
+
+<p>{{fecha | date: 'dd-MM-YYYY'}}</p>
+<p>{{sueldo | currency}}</p>
+<pre>{{mascotas | json}}</pre>

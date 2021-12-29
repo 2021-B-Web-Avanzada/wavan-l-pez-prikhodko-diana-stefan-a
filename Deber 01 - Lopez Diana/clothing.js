@@ -84,7 +84,7 @@ class Clothing{
                 this.printResult(clothing)
             }
         } else{
-            console.log("No existe dicha tienda.")
+            console.log("No existe dicha ropa para dicha tienda.")
         }
     }
 

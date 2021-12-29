@@ -22,11 +22,11 @@ app.get('/', (req, res) =>{
 });
 
 
-//CONECT TO DB
+//CONNECT TO DB
 mongoose.connect(
   process.env.DB_CONNECTION, 
   () =>  console.log('connected to DB!')  
 );
 
-// HOW TO WE START LISTENING TO THE SERVER?
+// HOW WE START LISTENING TO THE SERVER?
 app.listen(3000);

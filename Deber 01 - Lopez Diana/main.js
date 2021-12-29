@@ -4,7 +4,6 @@ const Clothing = require("./clothing");
 
 const main = async () => {
     let flag = true
-    console.log()
     while (flag === true){
         const result = await menu()
         if (result === false){
@@ -94,7 +93,7 @@ async function menu(){
                         { type: "input", name: "price", message: "Precio:" },
                         { type: "list", name: "size", message: "Talla:" , choices: ["S", "M", "L"]},
                         { type: "input", name: "stock", message: "Stock:" },
-                        { type: "list", name: "topSelling", message: "¡Top Ventas?:", choices: ["true", "false"] }]
+                        { type: "list", name: "topSelling", message: "¿Top Ventas?:", choices: ["true", "false"] }]
                     )
                     //Create object and save
                     const clothing = new Clothing(informationCreateClothing1.code, informationCreateClothing1.name, informationCreateClothing1.price, informationCreateClothing1.size
