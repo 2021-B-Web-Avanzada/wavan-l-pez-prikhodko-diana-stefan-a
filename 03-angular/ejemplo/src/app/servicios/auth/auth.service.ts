@@ -4,7 +4,7 @@ import {Injectable} from "@angular/core";
 export class AuthService{
     estaLogeado = false;
     roles = [
-     // 'admin',
+      //'admin',
       'supervisor',
       'usuario'
     ]

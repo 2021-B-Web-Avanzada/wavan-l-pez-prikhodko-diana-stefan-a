@@ -1,0 +1,121 @@
+<style>
+  .legal{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    margin: 2% 6%;
+  }
+  .line{
+    background-color: black;
+    height: 1px;
+    width: 90%;
+    margin: 0 5%;
+  }
+  li#titleOption{
+    list-style:none;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: 'Raleway', sans-serif;
+    padding-bottom: 2%;
+  }
+  li#textOption{
+    list-style:none;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 5%;
+    cursor: pointer;
+  }
+  .boxFooter{
+    padding: 5% 0 15% 5%;
+  }
+  .boxFooter div#pictures{
+    padding-left: 1%;
+    width: 20%;
+    height: 250px;
+    float:left
+  }
+  .dot {
+    height: 35px;
+    width: 35px;
+    background-color: transparent;
+    border: 1px gray solid;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 2%;
+    cursor: pointer;
+  }
+  .dot img{
+    width: 18px;
+    height: 18px;
+    padding: 24%;
+    cursor: pointer;
+  }
+  .flags{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15%;
+  }
+  .columnOptions{
+    width: 260px;
+    height: 250px;
+    float:left
+  }
+</style>
+
+<!-- -----------------------------  COMPONENTE CUADRO ENLACES ----------------------------- -->
+
+<div class="boxFooter">
+  <div id="pictures">
+
+    <!-- IMAGEN - LOGO DEL SITIO -->
+
+    <img alt="SiteW" height="32" width="107" src="https://ssl.sitew.org/images/blog/logos/2021_wide.svg"><br><br>
+
+    <!-- IMÁGENES - LOGOS DE LAS REDES SOCIALES -->
+
+    <div class="dot">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///9paWlmZmZiYmJfX1/Z2dm5ubnU1NSJiYlzc3O8vLyHh4d4eHiBgYF8fHyZmZmPj4+VlZWioqKvr6+pqany8vLDw8NtbW2enp75+fnNzc1aWlrw8PDq6uri4uK6urrOcFJrAAAD00lEQVR4nO3d3XaiMBSG4ZJE/Gmnij+oUO393+XoamdWWcUOO2b2t4Pfe9SjrjyFAmIIT0+4jqdJU19b1Is/lWX59+dF/dFiAhxkXMdTUy6f574NwQ+o3aAHLOo42azmLnjnXDEwn5HwrZ4574fbMhMem9ll08lwOQnfNvsQw7sKt+jBD+i4LaI2XzbC2vlYXhbC0yzc4ctA2BTR++encI0m/Nwm9gCTi3B53x5qX1jdDyycZWGCLWhbuE4BtCyskwALd0BDbnW+9yBqXjgfu3CTZh+9CJdoSn+ney5FsxAuE+2jZoXnZJvQqjDdJixchcb0tUu3CY0KF6MXpjoXmhWeUp0LzQrfE+6khVuhOT3NEu6kJoW7hD6bwknKndSksBy9MOEFzVU4Q3u+92vswt0+JdCiMOn53qRwklj4jAZ9qxn9Nkz5waIwuQ3lp0PnQwhtuH7H35M94UYovBjK6XmHHragrUzoXrObErQWnfDdS05b76ODSBim6PHKE12Wujl6uBFVIqHVbyV+aiUR+gV6uBGJ7mHk+G/49CwSntHDjUgmPKGHG5HoA3B4Qw83oleRML/zvVDoKbTYi0h4RA83Igo7OQotJvp69AGE6NHGROGDCQv0aGOisNMePdqYKPxalrfaKHw04Qt6tDFR2BG+okcb03iEu0l/8+HAy15645d8CXfPeNqG3gTAC7H/d3yp/YUTpp1zcfNvgHuyS0no38cuDM3YhR43kUFLCDyWKh1pcN9OKQkL3P1GHSHy04eSEHhdpyQETmRXEgIn3OgIkUsMKQmBU4p0hMCLNi0hcPapkhA4pUhJCJysoXSkwQG1rkvHLoTeUNURIp+Y0REi14xQEULXo9MRlmMXhnr0QuRMdx0hcqa7jhA5w1bnbIGc2achdPPRC3FfrWkJoUtGqAihj7ZpCLGLeasIoQ/vpRH2PqD+mfct9OG9JDMV9rOeVqtVVVWH9bZsoBPdd9P+ZLNNkILYJM9bUGgzCim0H4UdoenZl7eikEL7UZi/UPI8PoU2o5BC+1HYEULvacdGIYX2ozB/oWQ1MwptRiGF9qOQQvtRSKH9KMxfKFkpmUKbUUih/URCey+RGRCFFNqPQgrtJ3kLC4U2o5BC+1HYEdp7BeeAREKDL2z+dxRSaD/J2wEptBmFFNqPQgrtN36h5I3HFNqMQgrtJxJW6NHGRGH+wiWFFJqPQgrtJxIilwmOjsL8hQcKKTQfhRTaj8KOELqKbmzjF64ppNB8FFJoPwo7QtxLt+/oAYSeQgqtRyGF9lu3fnAhyzP+tBT0v99B8hvUpVoHnhZXzgAAAABJRU5ErkJggg==" alt="Facebook">
+    </div>
+    <div class="dot">
+      <img src="data:image/png;base64,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" alt="Twitter">
+    </div>
+    <div class="dot">
+      <img src="https://img2.freepng.es/20180601/ls/kisspng-linkedin-computer-icons-youtube-social-media-5b117d32a9d795.2147815715278728186957.jpg" alt="Linkedin">
+    </div>
+
+    <!-- BANDERAS DE LOS IDIOMAS DE LA PÁGINA -->
+
+    <div class="flags">
+      <a><img alt="Search on SiteW" class="lang_logo" width="22" height="22" loading="lazy" src="https://st0.cdnsw.com/assets/icons/flags/en-92e523bd55163b70eadddb1f444cd1b4.svg"></a>&nbsp;&nbsp;<a onclick="var href=this.href;$.get('/account/update_lang?new_lang=fr').then(function(){window.location=href;});return false;" href="https://www.sitew.com/Modules-pro"><img alt="Les dernières actualités" class="lang_logo" width="22" height="22" src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibmMtaWNvbiBjb2xvcmVkIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjQ4cHgiIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48Zz4KPHBhdGggZmlsbD0iIzAxMjA5RiIgZD0iTTE2LDQySDJjLTEuMTA1LDAtMi0wLjg5NS0yLTJWOGMwLTEuMTA1LDAuODk1LTIsMi0yaDE0VjQyeiI+PC9wYXRoPgo8cGF0aCBmaWxsPSIjRUY0MjM0IiBkPSJNNDgsNDBjMCwxLjEwNS0wLjg5NSwyLTIsMkgzMlY2aDE0YzEuMTA1LDAsMiwwLjg5NSwyLDJWNDB6Ij48L3BhdGg+CjxyZWN0IHg9IjE2IiB5PSI2IiBmaWxsPSIjRTZFNkU2IiB3aWR0aD0iMTYiIGhlaWdodD0iMzYiPjwvcmVjdD4KPC9nPjwvc3ZnPg=="></a>&nbsp;&nbsp;<a onclick="var href=this.href;$.get('/account/update_lang?new_lang=de').then(function(){window.location=href;});return false;" href="https://de.sitew.com/Pro-Module"><img alt="Presseraum" class="lang_logo" width="22" height="22" src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibmMtaWNvbiBjb2xvcmVkIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjQ4cHgiIGhlaWdodD0iNDhweCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48Zz4KPHBhdGggZD0iTTQ4LDE4SDBWOGMwLTEuMTA1LDAuODk1LTIsMi0yaDQ0YzEuMTA1LDAsMiwwLjg5NSwyLDJWMTh6Ij48L3BhdGg+CjxyZWN0IHk9IjE4IiBmaWxsPSIjRUUwMDAwIiB3aWR0aD0iNDgiIGhlaWdodD0iMTIiPjwvcmVjdD4KPHBhdGggZmlsbD0iI0ZEQ0YwMCIgZD0iTTQ4LDQwYzAsMS4xMDUtMC44OTUsMi0yLDJIMmMtMS4xMDUsMC0yLTAuODk1LTItMlYzMGg0OFY0MHoiPjwvcGF0aD4KPC9nPjwvc3ZnPg=="></a>
+    </div>
+  </div>
+
+  <!-- COLUMNAS CON LAS DIFERENTES OPCIONES Y SECCIONES -->
+
+  <div *ngFor="let option of optionFooter" class="columnOptions">
+    <ol>
+      <li id="titleOption">{{option.titulo}}</li>
+      <li id="textOption" *ngFor="let options2 of option.opciones">
+        {{options2}}
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- LÍNEA QUE DIVIDE EL FOOTER Y COLOCA LOS DERECHOS DE LA PÁGINA -->
+
+<div class="line"></div>
+
+<div class="legal">
+  <b>© 2007-2022 | SiteW</b><br>
+  Inicio • Aviso legal
+</div>
+
+
+
+
+
+
+<div>.</div>

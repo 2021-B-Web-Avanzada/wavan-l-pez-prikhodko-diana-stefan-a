@@ -1,0 +1,119 @@
+<style>
+  .barOption{
+    margin-left: 9%;
+    margin-top: 5%;
+    color: #68676F;
+    border-color: transparent;
+  }
+  .barOption mat-button-toggle{
+    margin-left: 10px;
+    border-color: transparent;
+    border-radius: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #838383;
+  }
+  .header{
+    margin: 0 5% 0 5%;
+  }
+  .headerItemText{
+    text-align: left;
+    font-family: Raleway, "Times New Roman",serif;
+    font-size: 19px;
+    position: absolute;
+    left: 15px;
+  }
+  .headerItemButton{
+    border: 3px solid #876cec;
+    background-color: transparent;
+    border-radius: 10px;
+    color: #876cec;
+    font-family: Raleway, "Times New Roman",serif;
+    width: 117px;
+    height: 45px;
+    font-size: 15px;
+    font-weight: 600;
+    right: 15px;
+    margin-top: 15px;
+  }
+  .headerItemButton:hover{
+    background-color: #7f81e7;
+    color: white;
+  }
+  .headerItemButton2{
+    border: 3px solid #876cec;
+    background-color: #8067EA;
+    border-radius: 10px;
+    color: white;
+    font-family: Raleway, "Times New Roman",serif;
+    width: 117px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 600;
+    right: 15px;
+    margin-top: 15px;
+  }
+  .headerItemButton2:hover{
+    background-color: #7f81e7 ;
+    color: white;
+  }
+  .flagEs{
+    cursor: pointer;
+    padding-top: 25%;
+    padding-left: 35%;
+    font-family: Raleway, "Times New Roman",serif;
+    font-size: 15px;
+  }
+</style>
+
+<!-- ------------------------------  BARRA DE LA PÁGINA ------------------------------ -->
+
+<mat-grid-list class="header" cols="11" rowHeight="100px">
+
+  <!-- IMAGEN - LOGO DEL SITIO -->
+
+    <mat-grid-tile>
+      <a href="http://localhost:4200/#/Modulos-Pro">
+        <div class="mainLogo -wide"><img alt="SiteW" height="42" width="117" src="https://ssl.sitew.org/images/blog/logos/2021_wide.svg"></div>
+      </a>
+    </mat-grid-tile>
+
+  <!-- NOMBRE DE LAS DIFERENTES OPCIONES QUE TIENE -->
+
+    <mat-grid-tile class="headerItemText">
+        Solución <mat-icon>keyboard_arrow_down</mat-icon>
+    </mat-grid-tile>
+    <mat-grid-tile class="headerItemText">Clientes<mat-icon>keyboard_arrow_down</mat-icon></mat-grid-tile>
+    <mat-grid-tile class="headerItemText">Precios</mat-grid-tile>
+    <mat-grid-tile class="headerItemText">Empresa <mat-icon>keyboard_arrow_down</mat-icon></mat-grid-tile>
+    <mat-grid-tile class="headerItemText">Recursos <mat-icon>keyboard_arrow_down</mat-icon></mat-grid-tile><mat-grid-tile></mat-grid-tile><mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile>
+
+   <!-- BANDERA Y ESPAÑOL -->
+
+  <div class="flagEs">
+    <img width="20" alt="Como crear un sitio web" height="13" srcset="https://st0.cdnsw.com/asset/resize/oMuRRbk5vwvl5As9QWlsJiVPNKvmU5MNQcel2a7uiqzaCeoYf+JNRvMRjNH1LU0qnVxCi1XT6k+nbZxoAKp3gyvBIioUb3nTv+IUmdmPoQw= 1000w,https://st0.cdnsw.com/asset/resize/oMuRRbk5vwvl5As9QWlsJiVPNKvmU5MNQcel2a7uiqzaCeoYf+JNRvMRjNH1LU0q2OLJq2wRJLcPEaccGRrIu8AR5|ZHHh77x35Xw|8BZFc= 768w,https://st0.cdnsw.com/asset/resize/oMuRRbk5vwvl5As9QWlsJiVPNKvmU5MNQcel2a7uiqzaCeoYf+JNRvMRjNH1LU0qPD8sQ2B00n4aVKROqXUHfshEflJekuNWKGdJZTSka3o= 425w,https://st0.cdnsw.com/asset/resize/oMuRRbk5vwvl5As9QWlsJiVPNKvmU5MNQcel2a7uiqzaCeoYf+JNRvMRjNH1LU0qNKenSUEg94Ylm9yVN|QgzeSWl+LZGbHAPPZYetezuqg= 375w,https://st0.cdnsw.com/asset/resize/oMuRRbk5vwvl5As9QWlsJiVPNKvmU5MNQcel2a7uiqzaCeoYf+JNRvMRjNH1LU0qhibjrzhTpElwy0XmRdDgZFEhmkisrmz4yfMkPyu|yto= 20w" loading="lazy" src="https://st0.cdnsw.com/asset/resize/oMuRRbk5vwvl5As9QWlsJiVPNKvmU5MNQcel2a7uiqzaCeoYf+JNRvMRjNH1LU0qhibjrzhTpElwy0XmRdDgZFEhmkisrmz4yfMkPyu|yto=">
+    <p style="">Es</p>
+  </div>
+  </mat-grid-tile>
+
+  <!-- BOTONES DE INICIO DE SESIÓN Y REGISTRO -->
+
+  <mat-grid-tile>
+    <button class="headerItemButton">Iniciar Sesión</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <button class="headerItemButton2">Registrarse</button>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<!-- BOTONES GRATIS - PREMIUM - PRO -->
+
+<mat-button-toggle-group class="barOption" #group="matButtonToggleGroup" value="Pro" appearance="standard" aria-label="Font Style">
+  <mat-button-toggle value="Gratis">Gratis</mat-button-toggle>
+  <mat-button-toggle value="Premium">Premium</mat-button-toggle>
+  <mat-button-toggle value="Pro">Pro</mat-button-toggle>
+</mat-button-toggle-group>
+
