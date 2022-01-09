@@ -36,6 +36,11 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'lazy-inventario',
+    loadChildren: () => import('./modulos/modulo-inventario/modulo-inventario.module')
+      .then(m => m.ModuloInventarioModule)
+  },
+  {
     path:'forbidden',
     component: RutaForbiddenComponent
   },
