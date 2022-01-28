@@ -2,6 +2,14 @@
   <p>{{usuarioActual.name}}</p>
 </div>
 
+<p-knob [(ngModel)]="valorKnob" [min]="0" [max]="60"></p-knob>
+
+<p-splitButton label="Save"
+               icon="pi pi-check"
+               (onClick)="abrirDialogo()"
+               [model]="items">Abrir Diálogo</p-splitButton>
+<button mat-button color="accent">Accent</button>
+
 <!-- Formulario -->
 
 <div class="container" *ngIf="formGroup">
@@ -27,8 +35,22 @@
         </div>
       </div>
     </div>
+    <!-- ES ADMINISTRADOR -->
+    <div class="mb-3">
+      <label for="email"
+             class="form-label">
+             Es administrador
+      </label>
+      <p-inputSwitch formControlName="esAdministrador"></p-inputSwitch>
+      <div class="form-text">
+        Seleccione si es un administrador:
+      </div>
+    </div>
 
-    <button class="btn btn-primary" [disabled]="formGroup.invalid">
+    <button class="btn btn-primary"
+            [disabled]="formGroup.invalid"
+            (click)="actualizarUsuario()"
+    >
       GUARDAR
     </button>
 
