@@ -2,96 +2,64 @@
   <p>{{usuarioActual.name}}</p>
 </div>
 
+<!-- PrimeNG: Knob -->
 <p-knob [(ngModel)]="valorKnob" [min]="0" [max]="60"></p-knob>
 
-<p-splitButton label="Save"
-               icon="pi pi-check"
-               (onClick)="abrirDialogo()"
-               [model]="items">Abrir Diálogo</p-splitButton>
-<button mat-button color="accent">Accent</button>
+<!-- PrimeNG: SplitButton -->
+<p-splitButton label="Save" icon="pi pi-check"
+               (onClick)="guardar()"
+               [model]="items"
+></p-splitButton>
 
-<!-- Formulario -->
+<button id="basic" type="button"
+        color="accent"
+        mat-raised-button
+        (click)="abrirDialogo()"
+>Basic Button</button>
 
 <div class="container" *ngIf="formGroup">
   <form [formGroup]="formGroup">
-    <!-- Correo electrónico -->
     <div class="mb-3">
-      <label for="email" class="form-label"> Correo Electrónico </label>
-      <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">Ingrese un correo electrónico.</div>
-      <!-- VALIDADORES -->
+      <!-- Email -->
+      <label for="email" class="form-label">Email</label>
+      <input id="email" formControlName="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese email">
       <div *ngIf="formGroup.get('email')">
-        <div class="alert alert-warning" role="alert" *ngIf="
-              formGroup.get('email')?.invalid &&
-              formGroup.get('email')?.touched &&
-              formGroup.get('email')?.dirty
-">
+        <div class="alert alert-warning" role="alert"
+             *ngIf="
+             formGroup.get('email')?.invalid &&
+             formGroup.get('email')?.touched &&
+             formGroup.get('email')?.dirty
+        ">
           <span *ngIf="formGroup.get('email')?.hasError('required')">
             Correo requerido
           </span>
           <span *ngIf="formGroup.get('email')?.hasError('minlength')">
-            Mínimo 3 caracteres
+            Mínimo de caracteres: 3
           </span>
         </div>
       </div>
-    </div>
-    <!-- ES ADMINISTRADOR -->
-    <div class="mb-3">
-      <label for="email"
-             class="form-label">
-             Es administrador
-      </label>
-      <p-inputSwitch formControlName="esAdministrador"></p-inputSwitch>
-      <div class="form-text">
-        Seleccione si es un administrador:
+      <!-- PrimeNG: InputSwitch -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Es administrador</label>
+        <p-inputSwitch formControlName="esAdministrador"></p-inputSwitch>
+        <div class="form-text">
+          Seleccione si es un administrador:
+        </div>
       </div>
-    </div>
-
-    <button class="btn btn-primary"
-            [disabled]="formGroup.invalid"
-            (click)="actualizarUsuario()"
-    >
-      GUARDAR
-    </button>
-
-    <!-- Nombre -->
-    <div class="mb-3">
-      <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
-      <div id="nameHelp" class="form-text">Ingrese un nombre.</div>
-    </div>
-    <!-- Teléfono -->
-    <div class="mb-3">
-      <label for="phone" class="form-label">Teléfono</label>
-      <input type="text" class="form-control" id="phone" aria-describedby="phonelHelp">
-      <div id="phoneHelp" class="form-text">Ingrese un teléfono.</div>
-    </div>
-    <!-- username -->
-    <div class="mb-3">
+      <button class="btn btn-primary" [disabled]="formGroup.invalid"
+              (click)="actualizarUsuario()"
+      >Guardar</button>
+      <!-- Phone -->
+      <br>
+      <label for="phone" class="form-label">Phone</label>
+      <input id="phone" type="text" class="form-control" aria-describedby="phoneHelp" placeholder="Ingrese phone">
+      <!-- Username -->
       <label for="username" class="form-label">Username</label>
-      <input type="text"
-             class="form-control"
-             id="username"
-             aria-describedby="usernamelHelp">
-      <div id="usernameHelp"
-           class="form-text">
-        Ingrese el username.
-      </div>
-    </div>
-    <!-- Website -->
-    <div class="mb-3">
-      <label for="website"
-             class="form-label">
-        Website
-      </label>
-      <input type="text"
-             class="form-control"
-             id="website"
-             aria-describedby="websiteHelp">
-      <div id="websiteHelp"
-           class="form-text">
-        Ingrese el website.
-      </div>
+      <input id="username" type="text" class="form-control" aria-describedby="usernameHelp" placeholder="Ingrese username">
+      <!-- Website -->
+      <label for="website" class="form-label">Website</label>
+      <input id="website" type="text" class="form-control" aria-describedby="websiteHelp" placeholder="Ingrese website">
     </div>
   </form>
+
 </div>

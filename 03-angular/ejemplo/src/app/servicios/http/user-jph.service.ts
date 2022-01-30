@@ -39,22 +39,22 @@ export class UserJphService {
   }
 
   buscarUno(idUsuario: number): Observable<UserJphInterface>{
-  const url = environment.urlJPC + 'users/' + idUsuario;
-  return this.httpClient
-    .get(url)
-    .pipe(
-        map(
-    (resultadoEnDate) => resultadoEnDate as UserJphInterface
-    )
-    );
+    const url = environment.urlJPC + 'users/' + idUsuario;
+    return this.httpClient
+      .get(url)
+      .pipe(
+          map(
+      (resultadoEnDate) => resultadoEnDate as UserJphInterface
+      )
+      );
   }
 
   actualizarPorId(
     idUsuario: number,
     datosActualizar: UserJphCreateInterface
   ): Observable<UserJphInterface>{
-    const url = environment.urlJPC + '/users/' + idUsuario;
-    return  this.httpClient
+    const url = environment.urlJPC + 'users/' + idUsuario;
+    return this.httpClient
       .put(url,datosActualizar)
       .pipe(map(
         (resultadoEnData) => resultadoEnData as UserJphInterface
