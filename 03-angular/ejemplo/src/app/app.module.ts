@@ -13,7 +13,6 @@ import { RutaAppComponent } from './rutas/ruta-app/ruta-app.component';
 import {AuthService} from "./servicios/auth/auth.service";
 import {EstaLogeadoGuard} from "./servicios/auth/esta-logeado.guard";
 import {EsAdministradorGuard} from "./servicios/auth/es-administrador.guard";
-import {BannerImagenesComponent} from "./componentes/banner-imagenes/banner-imagenes/banner-imagenes.component";
 import {BannerImagenesModule} from "./componentes/banner-imagenes/banner-imagenes.module";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -25,6 +24,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import { ModalEjemploComponent } from './componentes/modales/modal-ejemplo/modal-ejemplo.component';
+import {SocketIoModule} from "ngx-socket-io";
 
 @NgModule({
   //Componentes importados
@@ -54,6 +54,10 @@ import { ModalEjemploComponent } from './componentes/modales/modal-ejemplo/modal
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
+    SocketIoModule.forRoot({
+      url: 'http://localhost:8080',
+      options: {}
+    })
   ],
   //Servicios importados
   providers: [

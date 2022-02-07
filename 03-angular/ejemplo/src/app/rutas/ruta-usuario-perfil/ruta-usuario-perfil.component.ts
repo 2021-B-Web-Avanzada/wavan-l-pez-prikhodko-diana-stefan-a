@@ -13,31 +13,112 @@ import {ModalEjemploComponent} from "../../componentes/modales/modal-ejemplo/mod
 })
 export class RutaUsuarioPerfilComponent implements OnInit {
 
-  //Variable de ruta
   idUsuario = 0;
   usuarioActual?: UserJphInterface;
   formGroup?: FormGroup;
-  valorKnob = 5
+  valorKnob = 30;
   items = [
-    {
-      label: 'Update', icon: 'pi pi-refresh', command: () =>{
-        console.log('Hola')
-      }
-    },
-    {
-      label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']
-    }
-  ]
+    { label: 'Update', icon: 'pi pi-refresh', command: () => {console.log('Hola')} },
+    { label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup'] }
+  ];
 
   constructor(
-    private readonly activatedRoute:ActivatedRoute,
-    private readonly userJphService: UserJphService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly userJPHService: UserJphService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
-    abrirDialogo(){
+  ngOnInit(): void {
+    // Observable
+    const parametroRuta$ = this.activatedRoute.params
+    parametroRuta$
+      .subscribe({
+        next: (parametrosRuta) => {
+          console.log(parametrosRuta);
+          this.idUsuario = + parametrosRuta['idUsuario'];
+          this.buscarUsuario(this.idUsuario);
+        }
+      });
+  }
+
+  buscarUsuario(id: number) {
+    const buscarUsuarioPorId$ = this.userJPHService.buscarUno(id);
+    buscarUsuarioPorId$.subscribe({
+      next: (data) => {
+        this.usuarioActual = data;
+        this.prepararFormulario();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+  prepararFormulario() {
+    this.formGroup = this.formBuilder.group({
+      email: new FormControl({
+        value: this.usuarioActual? this.usuarioActual.email : '',
+        disabled: false
+      }, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      esAdministrador: new FormControl(true)
+    });
+    // Escuchar cambios
+    // const cambio$ = this.formGroup.valueChanges;
+    // cambio$.subscribe({
+    //   next: (valor) => {
+    //     if (this.formGroup) {
+    //       console.log(valor, this.formGroup);
+    //       if (this.formGroup?.valid)
+    //         console.log('Ok')
+    //       else
+    //         console.log('No valid')
+    //     }
+    //   }
+    // });
+  }
+
+  prepararObjeto() {
+    if (this.formGroup) {
+      const email = this.formGroup.get('email');
+      if (email) {
+        return { email: email.value }
+      }
+    }
+    return { email: '', }
+  }
+
+  actualizarUsuario() {
+    if (this.usuarioActual) {
+      const valoresAActualizar = this.prepararObjeto();
+      const actualizar$ = this.userJPHService
+        .actualizarPorId(
+          this.usuarioActual.id,
+          valoresAActualizar
+        );
+      actualizar$
+        .subscribe({
+          next: (datos) => {
+            console.log(datos);
+            const url = ['/app', 'usuario'];
+            this.router.navigate(url);  // Volver a la lista de usuarios
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        })
+    }
+  }
+
+  guardar() {
+    console.log('GUARDAR');
+  }
+
+  abrirDialogo() {
     const referenciaDialogo = this.dialog.open(
       ModalEjemploComponent,
       {
@@ -47,116 +128,12 @@ export class RutaUsuarioPerfilComponent implements OnInit {
         }
       }
     );
-
     const despuesCerrado$ = referenciaDialogo.afterClosed();
     despuesCerrado$
       .subscribe(
-        (datos) =>{
+        (datos) => {
           console.log(datos);
         }
-      )
-    }
-
-  ngOnInit(): void {
-
-    const parametroRuta$ = this.activatedRoute.params;
-
-    parametroRuta$
-      .subscribe(
-        {
-          next: (parametrosRuta) =>{
-            console.log(parametrosRuta);
-            this.idUsuario = + parametrosRuta['idUsuario'];
-            this.buscarUsuario(this.idUsuario);
-          }
-        }
-      )
-  }
-
-  buscarUsuario(id: number){
-    const buscarUsuarioPorId$ = this.userJphService.buscarUno(id);
-    buscarUsuarioPorId$
-      .subscribe(
-        {
-          next : (data) =>{
-            this.usuarioActual = data;
-            this.prepararFormulario();
-          },
-          error : (error) =>{
-            console.error(error)
-          }
-        }
-      )
-  }
-
-  prepararFormulario(){
-    this.formGroup = this.formBuilder
-      .group(
-        {
-          email: new FormControl(
-            {
-              value: this.usuarioActual? this.usuarioActual.email: '',
-              disabled: false
-            },
-            [
-              Validators.required, // min, max, minLegth, maxLength, email, pattern
-              Validators.minLength(3)
-            ]
-          ),
-          esAdministrador: new FormControl(true)
-        }
       );
-
-    const cambio$ = this.formGroup.valueChanges;
-    cambio$.subscribe({
-      next: (valor) =>{
-        if (this.formGroup){
-          console.log(valor, this.formGroup);
-          if (this.formGroup?.valid){
-            console.log("Yupi");
-          }else{
-            console.log(":c");
-          }
-        }
-      }
-    });
-  }
-
-  prepararObjeto(){
-    if(this.formGroup){
-      const email = this.formGroup.get('email');
-      if (email){
-        return{
-          email: email.value
-        }
-      }
-    }
-    return { email: ''}
-  }
-
-  actualizarUsuario(){
-    if(this.usuarioActual){
-      const valoresAActualizar = this.prepararObjeto();
-      const actualizar$ = this.userJphService
-        .actualizarPorId(
-          this.usuarioActual.id,
-          valoresAActualizar
-        );
-      actualizar$
-        .subscribe({
-          next:(datos) =>{
-            console.log({datos});
-            const url = ['/app','usuario'];
-            this.router.navigate(url);
-          },
-          error:(err) =>{
-            console.log({err});
-          }
-        })
-    }
-  }
-
-  guardar(){
-    console.log('GUARDAR')
   }
 }
