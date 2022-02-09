@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WebsocketService} from "./servicios/websockets/websocket.service";
 
 @Component({
@@ -6,8 +6,8 @@ import {WebsocketService} from "./servicios/websockets/websocket.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'ejemplo';
+export class AppComponent implements  OnInit{
+
 
   constructor(
     private readonly websocketService: WebsocketService
@@ -15,7 +15,20 @@ export class AppComponent {
   }
 
   eventoHola(){
-    this.websocketService.ejecutarEventHola()
+    this.websocketService.ejecutarEventHola();
+  }
+
+  ngOnInit() {
+    this.websocketService
+      .escucharEventoHola()
+      .subscribe({
+        next: (data) =>{
+          console.log(data);
+        },
+        error: (error) =>{
+          console.error({error})
+        }
+      })
   }
 
 }
