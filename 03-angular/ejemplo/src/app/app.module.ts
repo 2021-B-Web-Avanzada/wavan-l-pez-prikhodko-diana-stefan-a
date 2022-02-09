@@ -25,6 +25,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import { ModalEjemploComponent } from './componentes/modales/modal-ejemplo/modal-ejemplo.component';
 import {SocketIoModule} from "ngx-socket-io";
+import { RutaSalaComponent } from './rutas/ruta-sala/ruta-sala.component';
 
 @NgModule({
   //Componentes importados
@@ -38,7 +39,8 @@ import {SocketIoModule} from "ngx-socket-io";
     RutaPostComponent,
     RutaAppComponent,
     RutaUsuarioPerfilComponent,
-    ModalEjemploComponent
+    ModalEjemploComponent,
+    RutaSalaComponent
   ],
   //Módulos importados
   imports: [
@@ -55,7 +57,7 @@ import {SocketIoModule} from "ngx-socket-io";
     MatButtonModule,
     MatDialogModule,
     SocketIoModule.forRoot({
-      url: 'http://localhost:8080',
+      url: 'ws://localhost:8080',
       options: {}
     })
   ],
