@@ -8,6 +8,7 @@ import {WebsocketService} from "./servicios/websockets/websocket.service";
 })
 export class AppComponent implements  OnInit{
 
+
   constructor(
     private readonly websocketService: WebsocketService
   ) {
