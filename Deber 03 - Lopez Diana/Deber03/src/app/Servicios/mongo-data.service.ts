@@ -114,4 +114,52 @@ export class MongoDataService {
         (resultadoEnDate) => resultadoEnDate as ClothingInterface[]
       ));
   }
+
+  eliminarRopa(
+    codeStore: string,
+    codeClothing: string
+  ): Observable<ClothingInterface> {
+    const url = environment.urlMongo + 'clothingStore/' + codeStore + '/clothing/' + codeClothing;
+    return this.httpCliente
+      .delete(url)
+      .pipe(map(
+        (resultadoEnData) => resultadoEnData as ClothingInterface
+      ))
+  }
+
+  crearRopa(
+    codeStore: string,
+    datosACrear: ClothingInterface
+  ): Observable<ClothingInterface> {
+    const url = environment.urlMongo + 'clothingStore/' + codeStore + '/clothing';
+    return this.httpCliente
+      .post(url, datosACrear)
+      .pipe(map(
+        (resultadoEnData) => resultadoEnData as ClothingInterface
+      ))
+  }
+
+  buscarUnaRopa(codeStore: string, codeClothing: string): Observable<ClothingInterface> {
+    const url = environment.urlMongo + 'clothingStore/' + codeStore + '/clothing/' + codeClothing;
+    return this.httpCliente
+      .get(url)
+      .pipe(
+        map(
+          (resultadoEnDate) => resultadoEnDate as ClothingInterface
+        )
+      );
+  }
+
+  editarRopa(
+    codeStore: string,
+    codeClothing: string,
+    datosActualizar: ClothingInterface
+  ): Observable<ClothingInterface> {
+    const url = environment.urlMongo + 'clothingStore/' + codeStore + '/clothing/' + codeClothing;
+    return this.httpCliente
+      .patch(url, datosActualizar)
+      .pipe(map(
+        (resultadoEnData) => resultadoEnData as ClothingInterface
+      ))
+  }
 }

@@ -91,7 +91,6 @@ export class CreateStoreComponent implements OnInit {
       crear$
         .subscribe({
           next: (datos) => {
-            console.log(datos);
             alert("Se ha creado exitosamente la Tienda");
             const url = ['/stores'];
             this._router.navigate(url);

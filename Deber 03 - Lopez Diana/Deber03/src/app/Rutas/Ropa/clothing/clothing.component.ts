@@ -53,15 +53,25 @@ export class ClothingComponent implements OnInit {
   }
 
   editarRopa(clothingCode: string){
-
+    const ruta = ['/stores',this.idTienda,'clothing','updateClothing',clothingCode];
+    this._router.navigate(ruta);
   }
 
   eliminarRopa(clothingCode: string){
-
+    const eliminar$ = this.mongoDataService
+      .eliminarRopa(this.idTienda, clothingCode)
+    eliminar$
+      .subscribe({
+        next: (datos) => {
+          alert("Se ha eliminado exitosamente la Ropa");
+          window.location.reload();
+        }
+      })
   }
 
   crearRopa(){
-
+    const ruta = ['/stores',this.idTienda,'clothing','createClothing'];
+    this._router.navigate(ruta);
   }
 
   regresar(){
