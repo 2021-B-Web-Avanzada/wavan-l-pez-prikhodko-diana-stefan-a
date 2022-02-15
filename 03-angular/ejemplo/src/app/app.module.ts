@@ -27,6 +27,7 @@ import { ModalEjemploComponent } from './componentes/modales/modal-ejemplo/modal
 import {SocketIoModule} from "ngx-socket-io";
 import { RutaSalaComponent } from './rutas/ruta-sala/ruta-sala.component';
 
+
 @NgModule({
   //Componentes importados
   declarations: [
@@ -58,6 +59,7 @@ import { RutaSalaComponent } from './rutas/ruta-sala/ruta-sala.component';
     MatDialogModule,
     SocketIoModule.forRoot({
       url: 'ws://localhost:8080',
+
       options: {}
     })
   ],

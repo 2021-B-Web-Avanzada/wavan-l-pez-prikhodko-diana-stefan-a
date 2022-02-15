@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Socket} from "ngx-socket-io";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import {Socket} from "ngx-socket-io";
 export class WebsocketService {
   constructor(private socket: Socket) {
   }
+
   ejecutarEventHola() {
     const resp = this.socket.emit('hola', {
       nombre: 'Diana'
@@ -44,8 +46,5 @@ export class WebsocketService {
     return this.socket.fromEvent('escucharEventoMensajeSala')
   }
 }
-
-
-
 
 
