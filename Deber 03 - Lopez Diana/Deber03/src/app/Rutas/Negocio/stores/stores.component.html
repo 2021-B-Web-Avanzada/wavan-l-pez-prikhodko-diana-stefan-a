@@ -1,0 +1,40 @@
+<!--  DISEÑO DE LA PÁGINA -->
+
+<!-- CUERPO DE LA PÁGINA -->
+
+<h2 class="container" style="text-align: center; padding: 25px"> ♥ Lista de tiendas de ropa disponibles ♥ </h2>
+
+<!-- CREAR -->
+
+  <div class="container" style="align-items: center; padding: 0 15%">
+    <div class="d-flex flex-row ">
+      <button class="btn btn-warning" style="margin-right: 5%"
+              (click)="crearTienda()">Añadir tienda</button>
+    </div>
+  </div>
+
+<!-- Listas -->
+
+<div style="padding: 4% 20%; align-items: center">
+  <div *ngFor="let store of arregloTiendas" class="container">
+    <div class="card d-flex flex-row mb-3" style="max-width: 40rem;  ">
+      <div class="card-header" style="text-align: center; display: flex;
+    align-items: center; ">
+        <strong>{{store.code}} - {{store.name}}</strong>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Dirección: </strong>{{store.address}} <br>
+          <strong>Teléfono: </strong>{{store.telephone}} <br>
+          <strong>¿Mayorista?: </strong>{{store.wholesaler}} <br>
+        </p>
+        <button class="btn btn-success col-3"
+            (click)="editarTienda(store.code)">Editar</button>
+        <button class="btn btn-danger col-3" style="margin-left: 15px"
+            (click)="eliminarTienda(store.code)">Eliminar</button>
+        <button class="btn btn-secondary text-white col-4" style="margin-left: 15px"
+            (click)="verProductos(store.code)">Ver Productos</button>
+      </div>
+    </div>
+  </div>
+</div>

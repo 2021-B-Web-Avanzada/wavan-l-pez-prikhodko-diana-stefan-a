@@ -1,0 +1,44 @@
+<!--  DISEÑO DE LA PÁGINA -->
+
+<!-- CUERPO DE LA PÁGINA -->
+
+<h2 class="container" style="text-align: center; padding: 25px"> ♥ Lista de productos de la tienda {{idTienda}} de ropa disponibles ♥ </h2>
+
+<!-- CREAR -->
+
+<div class="container" style="align-items: center; padding: 0 15%">
+  <div class="d-flex flex-row ">
+    <button class="btn btn-warning" style="margin-left: 5%"
+            (click)="crearRopa()">Añadir producto</button>
+    <button class="btn btn-danger" style="margin-left: 40%; width: 200px"
+            (click)="regresar()">Regresar</button>
+  </div>
+  <div class="d-flex flex-row ">
+
+  </div>
+</div>
+
+<!-- Listas -->
+
+<div style="padding: 4% 20%; align-items: center">
+  <div *ngFor="let clothing of arregloRopa" class="container">
+    <div class="card d-flex flex-row mb-3" style="max-width: 40rem;  ">
+      <div class="card-header" style="text-align: center; display: flex;
+    align-items: center; ">
+        <strong>{{clothing.code}} - {{clothing.name}}</strong>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Precio: </strong>{{clothing.price}} <br>
+          <strong>Talla: </strong>{{clothing.size}} <br>
+          <strong>Stock: </strong>{{clothing.stock}} <br>
+          <strong>¿Top Selling?: </strong>{{clothing.topSelling}} <br>
+        </p>
+        <button class="btn btn-success col-3"
+                (click)="editarRopa(clothing.code)">Editar</button>
+        <button class="btn btn-danger col-3" style="margin-left: 15px"
+                (click)="eliminarRopa(clothing.code)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
