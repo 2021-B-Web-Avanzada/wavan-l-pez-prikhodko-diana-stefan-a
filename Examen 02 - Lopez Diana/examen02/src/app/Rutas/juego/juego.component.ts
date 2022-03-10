@@ -90,6 +90,17 @@ export class JuegoComponent implements OnInit {
     this.listaSuscripcion.push(suscripcion)
   }
 
+  respuestaSalirSala(){
+    const suscripcion = this.websocketsService.escucharRespuestaSalirJuego()
+      .subscribe({
+        next: (datos: any) =>{
+          alert(datos.message)
+          this.jugadorTurno = datos.turno;
+        }
+      })
+    this.listaSuscripcion.push(suscripcion)
+  }
+
   desuscribirse(){
     this.listaSuscripcion.forEach(
       (suscripcion) =>{
@@ -113,6 +124,13 @@ export class JuegoComponent implements OnInit {
     this.getListaPalabrasUsada()
     this.respuestaNuevaPalabra()
     this.respuestaListaPalabras()
+    this.respuestaSalirSala()
   }
 
+  salirJuego(){
+    this.websocketsService.ejecutarEventoSalirJuego(this.salaActual, this.jugadorActual);
+
+    this.router.navigate(['/inicio']);
+    this.desuscribirse()
+  }
 }

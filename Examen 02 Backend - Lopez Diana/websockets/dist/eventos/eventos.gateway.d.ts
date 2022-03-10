@@ -7,4 +7,5 @@ export declare class EventosGateway {
     getSala(salaId: string): SalasInterface;
     nuevaPalabra(message: any, socket: Socket): void;
     listaDePalabras(message: any, socket: Socket): void;
+    salirJuego(message: any, socket: Socket): void;
 }

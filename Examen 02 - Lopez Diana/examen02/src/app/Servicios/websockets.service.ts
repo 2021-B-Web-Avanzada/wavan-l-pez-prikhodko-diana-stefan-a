@@ -39,4 +39,14 @@ export class WebsocketsService {
     return this.socket.fromEvent('RespuestaListaDePalabras')
   }
 
+  ejecutarEventoSalirJuego(salaId: string, apodo: string) : Observable<any> {
+    return this.socket.emit('salirJuego',{
+      salaId: salaId, apodo: apodo
+    })
+  }
+
+  escucharRespuestaSalirJuego(){
+    return this.socket.fromEvent('RespuestaSalirJuego')
+  }
+
 }

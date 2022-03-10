@@ -1,5 +1,5 @@
 import {ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer} from "@nestjs/websockets";
-import { Server, Socket } from 'socket.io';
+import {Server, Socket} from 'socket.io';
 import {SalasInterface} from "../Interfaces/salas.interface";
 
 @WebSocketGateway(
@@ -88,4 +88,31 @@ export class EventosGateway{
             socket.emit('RespuestaListaDePalabras', {listaPalabras: salaExiste.listaPalabras, turno: salaExiste.jugadorTurno})
         }
     }
+
+    @SubscribeMessage('salirJuego')
+    salirJuego(
+        @MessageBody()
+            message,
+        @ConnectedSocket()
+            socket: Socket
+    ){
+        let salaExiste = this.getSala(message.salaId)
+        if(salaExiste){
+            salaExiste.listaJugadores.splice(salaExiste.listaJugadores.indexOf(message.apodo));
+            socket.leave(message.salaId)
+            if (salaExiste.listaJugadores.length <= 0){
+                this.arregloSalasJugadores.splice(this.arregloSalasJugadores.indexOf(salaExiste))
+            } else{
+                if (salaExiste.jugadorTurno === message.apodo){
+                    let siguienteJugadorIndex = salaExiste.listaJugadores.indexOf(salaExiste.jugadorTurno) + 1
+                    if(siguienteJugadorIndex >= salaExiste.listaJugadores.length){
+                        siguienteJugadorIndex = 0
+                    }
+                    salaExiste.jugadorTurno = salaExiste.listaJugadores[siguienteJugadorIndex]
+                }
+                socket.to(message.salaId).emit('RespuestaSalirJuego', {message: message.apodo + ' ha salido del juego', turno: salaExiste.jugadorTurno})
+            }
+        }
+    }
+
 }
