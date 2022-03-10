@@ -93,9 +93,8 @@ export class EventosGateway{
     ){
         let salaExiste = this.getSala(message.salaId)
         if(salaExiste){
-            salaExiste.listaJugadores.splice(salaExiste.listaJugadores.indexOf(message.apodo));
             socket.leave(message.salaId)
-            if (salaExiste.listaJugadores.length <= 0){
+            if (salaExiste.listaJugadores.length <= 1){
                 this.arregloSalasJugadores.splice(this.arregloSalasJugadores.indexOf(salaExiste))
             } else{
                 if (salaExiste.jugadorTurno === message.apodo){
@@ -107,6 +106,7 @@ export class EventosGateway{
                 }
                 socket.to(message.salaId).emit('RespuestaSalirJuego', {message: message.apodo + ' ha salido del juego', turno: salaExiste.jugadorTurno})
             }
+            salaExiste.listaJugadores.splice(salaExiste.listaJugadores.indexOf(message.apodo));
         }
     }
 
