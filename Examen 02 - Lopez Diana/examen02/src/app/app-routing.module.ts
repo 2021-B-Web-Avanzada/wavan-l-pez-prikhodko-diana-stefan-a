@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {InicioComponent} from "./Rutas/inicio/inicio.component";
 import {JuegoComponent} from "./Rutas/juego/juego.component";
-import {SalaEsperaComponent} from "./Rutas/sala-espera/sala-espera.component";
 
 const routes: Routes = [
   {
@@ -10,12 +9,8 @@ const routes: Routes = [
     component: InicioComponent
   },
   {
-    path: 'juego/:salaId/:nombreUsuario',
+    path: 'juego/:salaId/:apodo',
     component: JuegoComponent
-  },
-  {
-    path: 'salaEspera/:salaId/:nombreUsuario',
-    component: SalaEsperaComponent
   }
 ];
 
