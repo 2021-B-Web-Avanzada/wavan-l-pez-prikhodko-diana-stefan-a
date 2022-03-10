@@ -48,7 +48,8 @@
               <button type="submit"
                       class="btn btn-warning"
                       (click)="unirseSala()"
-                      style="margin-top: 2ch; width: 100%">Entrar</button>
+                      style="margin-top: 2ch; width: 100%"
+                      [disabled]="formGroup.invalid">Entrar</button>
             </form>
           </div>
         </div>

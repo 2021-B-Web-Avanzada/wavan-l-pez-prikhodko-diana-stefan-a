@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsocketsService} from "../../Servicios/websockets.service";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-juego',
@@ -35,7 +35,10 @@ export class JuegoComponent implements OnInit {
       palabra: new FormControl({
         value: '',
         disabled: false,
-      })
+      }, [
+        Validators.required,
+        Validators.minLength(3)
+      ])
     })
   }
 
@@ -44,9 +47,14 @@ export class JuegoComponent implements OnInit {
     this.palabraActual = this.formGroup?.get('palabra')?.value;
     if (this.palabraActual){
       const respuestaBusqueda = this.listaPalabras.includes(this.palabraActual)
-      console.log("respuesta filter", respuestaBusqueda)
       if (respuestaBusqueda){
-        alert("La palabra ya fue usada en el juego")
+        //Mensaje de error
+        Swal.fire({
+          title: '¡Problema!',
+          text: 'La palabra ya fue usada en el juego. ¡Intenta con otra!',
+          icon: 'error',
+          confirmButtonText: 'Continuar'
+        })
       } else {
         const dosUltimasLetras = this.ultimaPalabra.substr(this.ultimaPalabra.length-2, 2);
         const dosPrimerasLetras = this.palabraActual.substr(0,2);
@@ -54,7 +62,13 @@ export class JuegoComponent implements OnInit {
           this.websocketsService.ejecutarEventoNuevaPalabra(this.palabraActual, this.salaActual);
           this.formGroup!.reset()
         }else{
-          alert("No coincide las letras finales con las iniciales de su palabra")
+          //Mensaje de error
+          Swal.fire({
+            title: '¡Problema!',
+            text: 'No coincide las letras finales con las iniciales de su palabra',
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          })
         }
       }
     }
@@ -64,8 +78,13 @@ export class JuegoComponent implements OnInit {
     const suscripcion = this.websocketsService.escucharRespuestaPalabraNueva()
       .subscribe({
         next: (datos: any) =>{
-          console.log(datos.mensaje);
-          alert(datos.mensaje +" "+  datos.turno)
+          // Mensaje de alerta
+          Swal.fire({
+            title: '¡Excelente!',
+            text: datos.mensaje + '. Ahora es el turno de: ' + datos.turno,
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          })
           this.jugadorTurno = datos.turno;
           this.getListaPalabrasUsada()
         }
@@ -81,7 +100,6 @@ export class JuegoComponent implements OnInit {
     const suscripcion = this.websocketsService.escucharRespuestaListaPalabras()
       .subscribe({
         next: (datos: any) =>{
-          console.log('palabras',datos.listaPalabras);
           this.listaPalabras = datos.listaPalabras
           this.ultimaPalabra = this.listaPalabras[this.listaPalabras.length-1];
           this.jugadorTurno = datos.turno;
@@ -94,7 +112,13 @@ export class JuegoComponent implements OnInit {
     const suscripcion = this.websocketsService.escucharRespuestaSalirJuego()
       .subscribe({
         next: (datos: any) =>{
-          alert(datos.message)
+          //Mensaje de error
+          Swal.fire({
+            title: '¡Advertencia!',
+            text: datos.message,
+            icon: 'question',
+            confirmButtonText: 'Continuar'
+          })
           this.jugadorTurno = datos.turno;
         }
       })
@@ -119,7 +143,6 @@ export class JuegoComponent implements OnInit {
           this.jugadorActual = parametrosRuta['apodo']
         }
       });
-    console.log(this.salaActual,this.jugadorActual)
     this.prepararFormulario()
     this.getListaPalabrasUsada()
     this.respuestaNuevaPalabra()

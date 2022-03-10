@@ -24,19 +24,17 @@ let EventosGateway = class EventosGateway {
         const salaExiste = this.getSala(message.salaId);
         if (salaExiste) {
             salaExiste.listaJugadores.push(message.apodo);
-            this.server.to(message.salaId).emit('RespuestaUnirseSala', { mensaje: 'Nuevo Jugador' });
+            this.server.to(message.salaId).emit('RespuestaUnirseSala', { message: 'Un nuevo jugador ingresó -', apodo: message.apodo });
         }
         else {
             const salaNueva = { salaId: message.salaId, listaJugadores: [message.apodo], jugadorTurno: message.apodo, listaPalabras: ['Mundo'] };
             this.arregloSalasJugadores.push(salaNueva);
-            socket.emit('RespuestaUnirseSala', { mensaje: 'Bienvenido al Juego' });
+            socket.emit('RespuestaUnirseSala', { message: 'Bienvenido al Juego', apodo: message.apodo });
         }
     }
     getSala(salaId) {
-        console.log(this.arregloSalasJugadores);
         let salaEncontrada;
         this.arregloSalasJugadores.forEach(sala => {
-            console.log(sala.salaId);
             if (sala.salaId === salaId) {
                 salaEncontrada = sala;
             }
@@ -45,7 +43,6 @@ let EventosGateway = class EventosGateway {
     }
     nuevaPalabra(message, socket) {
         const salaExiste = this.getSala(message.salaId);
-        console.log("Se recibe", message.palabra);
         if (salaExiste) {
             salaExiste.listaPalabras.push(message.palabra);
             let siguienteJugadorIndex = salaExiste.listaJugadores.indexOf(salaExiste.jugadorTurno) + 1;

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {WebsocketsService} from "../../Servicios/websockets.service";
 import {Subscription} from "rxjs";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-inicio',
@@ -29,11 +30,15 @@ export class InicioComponent implements OnInit{
       apodo: new FormControl({
         value: '',
         disabled: false,
-      }),
+      },[
+          Validators.required
+      ]),
       salaId: new FormControl({
         value: '',
         disabled: false,
-      }),
+      }, [
+          Validators.required
+        ]),
     })
   }
 
@@ -49,9 +54,14 @@ export class InicioComponent implements OnInit{
     const suscripcion = this.websocketsService.escucharRespuestaServidor()
       .subscribe({
         next: (datos: any) =>{
-          console.log(datos.mensaje);
+          //Mensaje de bienvenida
+          Swal.fire({
+            title: '¡Excelente!',
+            text: datos.message + ' ' + datos.apodo,
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          })
           this.router.navigate(['/juego',this.formGroup?.get('salaId')?.value, this.formGroup?.get('apodo')?.value])
-
         }
       })
       this.listaSuscripcion.push(suscripcion)
