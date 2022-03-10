@@ -4,18 +4,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './Rutas/inicio/inicio.component';
 import { JuegoComponent } from './Rutas/juego/juego.component';
-import { SalaEsperaComponent } from './Rutas/sala-espera/sala-espera.component';
+import {SocketIoModule} from "ngx-socket-io";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     JuegoComponent,
-    SalaEsperaComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SocketIoModule.forRoot({
+      url: 'ws://localhost:8080',
+      options: {}
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
