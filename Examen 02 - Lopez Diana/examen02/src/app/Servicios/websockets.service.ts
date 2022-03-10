@@ -18,4 +18,25 @@ export class WebsocketsService {
   escucharRespuestaServidor(){
     return this.socket.fromEvent('RespuestaUnirseSala')
   }
+
+  ejecutarEventoNuevaPalabra(palabra: string, salaId: string): Observable<any>{
+    return this.socket.emit('nuevaPalabra',{
+      palabra: palabra, salaId: salaId
+    })
+  }
+
+  escucharRespuestaPalabraNueva(){
+    return this.socket.fromEvent('RespuestaPalabraNueva')
+  }
+
+  ejecutarEventoEscucharPalabras(salaId: string) : Observable<any> {
+    return this.socket.emit('listaDePalabras',{
+      salaId: salaId
+    })
+  }
+
+  escucharRespuestaListaPalabras(){
+    return this.socket.fromEvent('RespuestaListaDePalabras')
+  }
+
 }

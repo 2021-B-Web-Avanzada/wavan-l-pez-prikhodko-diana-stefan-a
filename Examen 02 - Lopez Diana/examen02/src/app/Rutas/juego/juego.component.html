@@ -33,7 +33,8 @@
 
         <div class="card-text" style="padding: 2%">
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let palabra of listaPalabras">{{palabra}}</li>
+            <li class="list-group-item"
+                *ngFor="let palabra of listaPalabras">{{palabra}}</li>
           </ul>
         </div>
       </div>
@@ -41,20 +42,26 @@
 
     <div class="col"
          style="text-align: center;">
-      <h4>Turno de Pepito</h4>
-      <div class="d-flex justify-content-center"><span class="text-wrap" style="width: 500px;">Coloque una palabra que inicie con las dos últimas letras de la palabra anterior: </span></div>
-      <form >
-        <div style="display: flex;
+      <h4>Turno de {{jugadorTurno}}</h4>
+      <div class="d-flex justify-content-center"><span class="text-wrap" style="width: 500px;">Coloque una palabra que inicie con las dos últimas letras de <strong>{{ultimaPalabra}}</strong> </span></div>
+      <div *ngIf="formGroup">
+        <form [formGroup]="formGroup">
+          <div style="display: flex;
              align-items: center;
              justify-content: center;">
-          <input type="text"
-                 class="form-control"
-                 id="palabra"
-                 style="width: 500px; margin-top: 5%">
-        </div>
-        <button type="submit" class="btn btn-warning" (click)="comprobarNuevaPalabra()"
-                style="margin-top: 5%; width: 500px">Listo</button>
-      </form>
+            <input type="text"
+                   class="form-control"
+                   id="palabra"
+                   style="width: 500px; margin-top: 5%"
+                   formControlName="palabra">
+          </div>
+          <button type="submit"
+                  class="btn btn-warning"
+                  (click)="comprobarNuevaPalabra()"
+                  *ngIf="jugadorTurno === jugadorActual"
+                  style="margin-top: 5%; width: 500px">Listo</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

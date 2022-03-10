@@ -2,5 +2,6 @@ export interface SalasInterface
 {
     salaId: string,
     listaJugadores: string [],
-    jugadorTurno: string
+    jugadorTurno: string,
+    listaPalabras: string []
 }

@@ -24,24 +24,50 @@ let EventosGateway = class EventosGateway {
         const salaExiste = this.getSala(message.salaId);
         if (salaExiste) {
             salaExiste.listaJugadores.push(message.apodo);
-            socket.to(message.salaId).emit('RespuestaUnirseSala', { mensaje: 'Nuevo Jugador' });
+            this.server.to(message.salaId).emit('RespuestaUnirseSala', { mensaje: 'Nuevo Jugador' });
         }
         else {
-            const salaNueva = { salaId: message.salaId, listaJugadores: [message.apodo], jugadorTurno: message.apodo };
+            const salaNueva = { salaId: message.salaId, listaJugadores: [message.apodo], jugadorTurno: message.apodo, listaPalabras: ['Mundo'] };
             this.arregloSalasJugadores.push(salaNueva);
             socket.emit('RespuestaUnirseSala', { mensaje: 'Bienvenido al Juego' });
         }
     }
     getSala(salaId) {
+        console.log(this.arregloSalasJugadores);
         let salaEncontrada;
         this.arregloSalasJugadores.forEach(sala => {
+            console.log(sala.salaId);
             if (sala.salaId === salaId) {
                 salaEncontrada = sala;
             }
         });
         return salaEncontrada;
     }
+    nuevaPalabra(message, socket) {
+        const salaExiste = this.getSala(message.salaId);
+        console.log("Se recibe", message.palabra);
+        if (salaExiste) {
+            salaExiste.listaPalabras.push(message.palabra);
+            let siguienteJugadorIndex = salaExiste.listaJugadores.indexOf(salaExiste.jugadorTurno) + 1;
+            if (siguienteJugadorIndex >= salaExiste.listaJugadores.length) {
+                siguienteJugadorIndex = 0;
+            }
+            const siguienteJugador = salaExiste.listaJugadores[siguienteJugadorIndex];
+            salaExiste.jugadorTurno = siguienteJugador;
+            this.server.to(message.salaId).emit('RespuestaPalabraNueva', { mensaje: 'Palabra Añadida', turno: siguienteJugador });
+        }
+    }
+    listaDePalabras(message, socket) {
+        const salaExiste = this.getSala(message.salaId);
+        if (salaExiste) {
+            socket.emit('RespuestaListaDePalabras', { listaPalabras: salaExiste.listaPalabras, turno: salaExiste.jugadorTurno });
+        }
+    }
 };
+__decorate([
+    (0, websockets_1.WebSocketServer)(),
+    __metadata("design:type", socket_io_1.Server)
+], EventosGateway.prototype, "server", void 0);
 __decorate([
     (0, websockets_1.SubscribeMessage)('unirseSala'),
     __param(0, (0, websockets_1.MessageBody)()),
@@ -50,6 +76,22 @@ __decorate([
     __metadata("design:paramtypes", [Object, socket_io_1.Socket]),
     __metadata("design:returntype", void 0)
 ], EventosGateway.prototype, "unirJugadorSala", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('nuevaPalabra'),
+    __param(0, (0, websockets_1.MessageBody)()),
+    __param(1, (0, websockets_1.ConnectedSocket)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, socket_io_1.Socket]),
+    __metadata("design:returntype", void 0)
+], EventosGateway.prototype, "nuevaPalabra", null);
+__decorate([
+    (0, websockets_1.SubscribeMessage)('listaDePalabras'),
+    __param(0, (0, websockets_1.MessageBody)()),
+    __param(1, (0, websockets_1.ConnectedSocket)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, socket_io_1.Socket]),
+    __metadata("design:returntype", void 0)
+], EventosGateway.prototype, "listaDePalabras", null);
 EventosGateway = __decorate([
     (0, websockets_1.WebSocketGateway)(8080, {
         cors: {

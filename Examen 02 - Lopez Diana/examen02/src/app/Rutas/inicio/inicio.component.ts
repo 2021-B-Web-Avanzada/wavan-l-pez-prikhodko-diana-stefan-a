@@ -51,6 +51,7 @@ export class InicioComponent implements OnInit{
         next: (datos: any) =>{
           console.log(datos.mensaje);
           this.router.navigate(['/juego',this.formGroup?.get('salaId')?.value, this.formGroup?.get('apodo')?.value])
+
         }
       })
       this.listaSuscripcion.push(suscripcion)
